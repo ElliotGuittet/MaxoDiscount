@@ -1,25 +1,37 @@
-import React from "react";
-import './login.css'
+import React, { useState } from "react";
 
-export default function Login() {
+const Login = ({ onLogin }) => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = () => {
+        // Ajoutez ici la logique d'authentification
+        // Par exemple, vérifiez les identifiants contre une base de données factice
+        // C'est ici que vous pouvez utiliser un service d'authentification, une API, etc.
+        // Pour cet exemple, je vais simplement simuler une connexion réussie
+        onLogin({ username });
+    };
+
     return (
-        <div>
-            <div className="form">
-                <form className="all-form">
-                    <h1>Se connecter</h1>
-                    <div className="form-group">
-                        <label>E-mail</label>
-                        <input type="email"/>
-                    </div>
-                    <div className="form-group">
-                        <label form="exampleInputPassword">Mot de passe</label>
-                        <input type="password" className="form-control" />
-                    </div>
-                    <button type="submit" className="bg-slate-900 btn btn-primary">
-                        Connexion {" "}
-                    </button>
-                </form>
-            </div>
+        <div className="login-form">
+            <h2>Connexion</h2>
+            <label htmlFor="username">Nom d'utilisateur:</label>
+            <input
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+            <label htmlFor="password">Mot de passe:</label>
+            <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={handleLogin}>Se connecter</button>
         </div>
-    )
-}
+    );
+};
+
+export default Login;
